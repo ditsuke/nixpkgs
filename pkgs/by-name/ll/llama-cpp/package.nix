@@ -31,13 +31,13 @@ let
 in
 effectiveStdenv.mkDerivation (finalAttrs: {
   pname = "llama-cpp";
-  version = "2105";
+  version = "2135";
 
   src = fetchFromGitHub {
     owner = "ggerganov";
     repo = "llama.cpp";
     rev = "refs/tags/b${finalAttrs.version}";
-    hash = "sha256-Xq/P7EN6dz2oW++bXhIMY7AhWgVk6hmuf4PmEaoVgMM=";
+    hash = "sha256-rYK5YaqzJXlAaSNXz37cDMhAr+OEGprfzTdtpd4/6jY=";
   };
 
   postPatch = ''
@@ -146,7 +146,7 @@ effectiveStdenv.mkDerivation (finalAttrs: {
     license = licenses.mit;
     mainProgram = "llama-cpp-main";
     maintainers = with maintainers; [ dit7ya elohmeier ];
-    broken = (effectiveStdenv.isDarwin && effectiveStdenv.isx86_64) || lib.count lib.id [openclSupport blasSupport rocmSupport cudaSupport] == 0;
+    broken = (effectiveStdenv.isDarwin && effectiveStdenv.isx86_64) || lib.count lib.id [ openclSupport blasSupport rocmSupport cudaSupport ] == 0;
     platforms = platforms.unix;
   };
 })
